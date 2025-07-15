@@ -1,0 +1,165 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #141e30, #243b55);
+    color: #f4f4f4;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+.header {
+    background-color: #1f2f46;
+    padding: 1.5rem;
+    text-align: center;
+    border-bottom: 2px solid #4fc3f7;
+}
+
+.header h1 {
+    font-size: 2.2rem;
+    color: #4fc3f7;
+}
+
+.header p {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+}
+
+.header a {
+    color: #f06292;
+    text-decoration: none;
+}
+
+.header a:hover {
+    text-decoration: underline;
+}
+
+/* Main Layout */
+main {
+    flex: 1;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Button Section */
+.controls {
+    margin-bottom: 2rem;
+}
+
+.button-group {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.action-btn {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.start {
+    background-color: #4caf50;
+    color: white;
+}
+
+.start:hover {
+    background-color: #388e3c;
+    transform: scale(1.05);
+}
+
+.stop {
+    background-color: #f44336;
+    color: white;
+}
+
+.stop:hover {
+    background-color: #d32f2f;
+    transform: scale(1.05);
+}
+
+/* Latest Video Section */
+.latest-video {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.latest-video h2 {
+    margin-bottom: 1rem;
+    color: #81d4fa;
+}
+
+.latest-video video {
+    max-width: 90%;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+}
+
+.download-link {
+    margin-top: 1rem;
+}
+
+.download-btn {
+    display: inline-block;
+    padding: 0.7rem 1.5rem;
+    background-color: #2196f3;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.download-btn:hover {
+    background-color: #1976d2;
+}
+
+/* History Section */
+.history {
+    background-color: #1a2636;
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 600px;
+    border-radius: 10px;
+    overflow-y: auto;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
+
+.history h2 {
+    margin-bottom: 1rem;
+    color: #ffcc80;
+}
+
+.history ul {
+    list-style-type: none;
+}
+
+.history li {
+    padding: 0.6rem;
+    border-bottom: 1px solid #444;
+    font-size: 0.95rem;
+}
+
+/* Footer */
+footer {
+    background-color: #1f2f46;
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
+    color: #888;
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - Magic Cloak</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style-dashboard.css') }}">
+    <link rel="icon" type="image/png" href="Images/harry.png">
+</head>
+<body>
+    <header class="header">
+        <h1>🪄 Magic Cloak</h1>
+        {% if username %}
+            <p>Welcome, <strong>{{ username }}</strong> | <a href="{{ url_for('logout') }}">Logout</a></p>
+        {% endif %}
+    </header>
+
+    <main>
+        <section class="controls">
+            {% if username %}
+            <div class="button-group">
+                <a href="{{ url_for('process_video') }}" class="action-btn start">🎬 Start Magic Cloak</a>
+                <a href="{{ url_for('stop_video') }}" class="action-btn stop">🛑 Stop Cloak</a>
+            </div>
+            {% else %}
+            <div class="button-group">
+                <a href="{{ url_for('login') }}" class="action-btn start">Login to Start</a>
+            </div>
+            {% endif %}
+        </section>
+
+        {% if latest_video %}
+        <section class="latest-video">
+            <h2>Latest Video</h2>
+            <video controls width="480">
+                <source src="{{ url_for('serve', f=latest_video) }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="download-link">
+                <a href="{{ url_for('serve', f=latest_video) }}" download class="download-btn">⬇️ Download</a>
+            </div>
+        </section>
+        {% endif %}
+
+        {% if history %}
+        <section class="history">
+            <h2>History</h2>
+            <ul>
+                {% for file, date in history %}
+                <li><strong>{{ file }}</strong> - {{ date }}</li>
+                {% endfor %}
+            </ul>
+        </section>
+        {% endif %}
+    </main>
+
+    <footer>
+        <p>© {{ datetime.utcnow().year }} Magic Cloak</p>
+    </footer>
+</body>
+</html>
