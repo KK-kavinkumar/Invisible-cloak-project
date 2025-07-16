@@ -7,6 +7,7 @@ import psutil
 import subprocess
 
 app = Flask(__name__)
+
 app.secret_key = 'your_secret_key'
 UPLOAD_FOLDER = 'static/uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -46,28 +47,13 @@ def process_video():
     process = subprocess.Popen(['python', 'process_video.py'])
     return redirect('/')
 
+
 @app.route('/stop')
 def stop_video():
-    global process
-    if 'username' in session and process:
-        try:
-            # Kill all child processes as well
-            parent = psutil.Process(process.pid)
-            for child in parent.children(recursive=True):
-                child.kill()
-            parent.kill()
-        except Exception as e:
-            print(f"Failed to kill process: {e}")
-        finally:
-            process = None
-
-        # Save to history
-        conn = sqlite3.connect('users.db')
-        c = conn.cursor()
-        c.execute("INSERT INTO history VALUES (?, ?, ?)", (session['username'], 'output.avi', str(datetime.now())))
-        conn.commit()
-
-    return redirect('/')
+    # ✅ Write a signal to stop the video loop
+    with open("stop.txt", "w") as f:
+        f.write("stop")
+    return redirect(url_for("dashboard"))
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -121,4 +107,5 @@ def users():
 
 if __name__ == '__main__':
     os.makedirs(UPLOAD_FOLDER, exist_ok=True)
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=True)
